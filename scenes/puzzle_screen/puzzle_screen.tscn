@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://blg8px2u1o5ac"]
+
+[ext_resource type="Script" uid="uid://dlqjrxjj5sjeo" path="res://scenes/puzzle_screen/puzzle_screen.gd" id="1_hrafy"]
+[ext_resource type="PackedScene" uid="uid://b2fn8jdyt4427" path="res://scenes/cell_grid/cell_grid.tscn" id="1_s6v06"]
+[ext_resource type="PackedScene" uid="uid://cm7axvgwi0q60" path="res://scenes/camera/player_camera.tscn" id="2_ueybk"]
+
+[node name="PuzzleScreen" type="Control" unique_id=1075942829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hrafy")
+
+[node name="CellGrid" parent="." unique_id=883800546 instance=ExtResource("1_s6v06")]
+layout_mode = 1
+
+[node name="PlayerCamera" parent="." unique_id=1821676002 instance=ExtResource("2_ueybk")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1891603350]
+
+[node name="ZoomLevelIndicator" type="Label" parent="CanvasLayer" unique_id=107316077]
+offset_right = 244.0
+offset_bottom = 23.0
+size_flags_horizontal = 0
+text = "LOREM IPSUM DOLOR SIT AMET"

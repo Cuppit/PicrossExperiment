@@ -1,0 +1,13 @@
+ACCOMPLISHMENTS TODAY:
+	-Rudimentary "cell" scene developed
+	
+TODO:
+	-Implement "click-n-drag" functionality
+	
+WHAT IS CLICK-N-DRAG?
+When you click on a cell, hold the button, and drag the mouse across multiple 
+cells to mark multiple cells as "carved", "marked", or "open".
+
+HOW TO IMPLEMENT?
+
+When you click on a cell, the state that is entered is stored somewhere (globally?)

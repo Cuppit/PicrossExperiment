@@ -1,0 +1,15 @@
+Click-and-drag functionality appears to work as intended.
+
+The next step is to igure out how to implement a pattern generator.
+
+PATTERN: HOW IT IS STORED
+
+2d array of booleans.
+
+HOW TO STORE THEM
+
+Global pattern DB
+key: name of pattern
+value: the 2d boolean array.
+
+HOW TO READ FROM FILE?

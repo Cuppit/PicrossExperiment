@@ -1,0 +1,29 @@
+SATURDAY, 06:55 CDT
+
+PROPOSAL: Make a Picross game.
+
+
+DESCRIPTION:
+	Implementation will be a grid of buttons that correspond to a picross pattern.  
+		-Left Click: carve out the square
+		-Right Click: Mark a square as empty
+		-Middle Click: "clear" square (return to default state) (optional)
+		
+	INITITAL IDEA FOR IMPLEMENTATION: TileGridLayer + Buttons (?)
+	
+	***FIRST CHALLENGE***
+		-Generate a grid of buttons 
+
+
+		OPTION: Generate one big button, with subdivided regions?
+		REASON: Want to be able to click/hold to drag across the screen and
+		hit multiple buttons at once like in Picross
+		
+		METHOD: detect coordinates of 
+		
+		----
+		
+		METHOD: ColorRect that responds to the mouse being positioned over it
+			-if left mouse button is held, "carve" the square
+			-if right mouse button is held, "mark" the square
+			

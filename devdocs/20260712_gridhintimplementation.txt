@@ -1,0 +1,54 @@
+--- HOW TO IMPLEMENT GRIDS ---
+
+Q: WHAT WAS LAST TIME'S TASK?
+A: Implement pattern hints.
+
+Q: WHAT WAS THE STOPPING POINT?
+A: Uncertainty on how to implement them.
+
+Q: WHAT'S THE TASK TODAY?
+A: Deciding on an implementation, and putting it in place to see how it works. 
+
+PROPOSED SOLTUION TO THE HINTS PROBLEM
+The "cell_grid.tscn" scene has a node, GridContainer, which holds the cells in
+the pattern.  An extra row/column will be added, but instead of adding cells,
+label objects that hold the pattern hint information will be stored there.
+
+Today's work is implementing this in the function for generating the cell grid.
+-------------------------------------
+SO FAR SUCCESS: The labels seem to stick within the confines of the cell sizes,
+but it's not clear why their presence doesn't mess up the scale/spacing of the
+
+NEXT STEP: Generate the actual hint labels.
+	PROCEDURE: On each column, scan the solution (where is the solution?)
+	
+DESIGN OVERSIGHT: A decision needed to be made about WHERE and HOW to store
+the actual solution to the puzzle.  The least expensive way (computationally at
+runtime) seems to be to store a 2D array of booleans.  For now, that is how it
+will be implemented.  The "current_pattern" property of the cell_grid.gd script
+will be that 2D array.
+
+[X] DONE
+
+NEXT STEP: Checking the entire board every single time a carve happens for a 
+solution sounds expensive.  In retrospect, designing the grid such that it
+performs bit-wise operations against a "board-state" value, a simple bitwise
+^ and operation every check would have been infinitely more efficient.
+
+...in fact it might even be easier to implement at this point?  No, that will
+be saved for a later time.
+
+NEXT STEP: implement column/row scan procedure.  Now, create two more arrays:
+	the column hints array (stores hint label objects left-to-right) and 
+	the row hints array (stores hint label objects top to bottom).
+	
+
+----------------------
+
+SUCCESS(...?)
+
+The labels appear to get changed appropriately?  
+
+PROBLEMS TO SOLVE FOR NEXT TIME:
+	-Fix hint inaccuracy problem
+	-implement a check for whether the puzzle has been solved
