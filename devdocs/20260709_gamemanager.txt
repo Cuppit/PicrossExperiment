@@ -1,0 +1,9 @@
+--- GAME SCREEN DESIGN ---
+
+A Main scene that contains the experience has the following:
+	-Instance of cell_grid (feeds it a pattern)
+	-Pattern solution
+	-functionality to generate column/row number hints
+	
+--- HOW TO DISPLAY NUMBER/ROW HINTS? ---
+Why not a textbox for each?

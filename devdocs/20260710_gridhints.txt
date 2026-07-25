@@ -1,0 +1,15 @@
+You have to create a grid of hints 
+
+1) CALCULATE HINTS
+
+EFFICIENT WAY TO CALCULATE HINTS?
+
+	1) scan each column from top to bottom
+		-store hints as a list
+		-generate label scenes over each column
+		-fill labels with text based on hints in list
+		
+	2) scan each row from top to bottom
+		-store hints as a list
+		-generate label scenes next to each row
+		-fill labels with text based on hints in list

@@ -1,0 +1,17 @@
+The custom property of the Cell scene "filled" seems to be unavailable after
+instantiation. 
+
+
+Becuause OOP in Godot doesn't work the way I supposed it would, instead I will
+have pattern tracking managed solely by the cell_grid scene itself.
+
+
+--- NEW PROBLEM ---
+
+Getting nodes to instantiate they way that's desired has been solved.  Now a
+different problem requires some thought: How exactly is the board state
+tracked?  How does cell_grid know which of it's child cells correspond to
+which location in the pattern?
+	-Can the list of children of GridContainer be obtained as a one-dimensional 
+	 array?  If so, that simplifies matters.  The one-dimensional array can be
+	 presumed to correspond to the pattern solution?  Let's see

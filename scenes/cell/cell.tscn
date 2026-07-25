@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://fnax3k8pbrgj"]
+
+[ext_resource type="Texture2D" uid="uid://boybwl8ifo053" path="res://icon.svg" id="1_gwrgs"]
+[ext_resource type="Script" uid="uid://2681o0bp5ma4" path="res://scenes/cell/cell.gd" id="2_2yjhv"]
+
+[node name="Cell" type="TextureButton" unique_id=1006822619]
+offset_right = 40.0
+offset_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource("1_gwrgs")
+texture_pressed = ExtResource("1_gwrgs")
+script = ExtResource("2_2yjhv")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]
