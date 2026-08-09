@@ -26,7 +26,7 @@ func load_from_file(filename:String) -> String:
 	return content
 
 
-## TODO: Finish this function
+## TODO: Finish this function (20260807: Done?)
 func get_hint_text(col_or_row:bool, idx:int):
 	print("GETTING HINT FOR Column?:",col_or_row,".  Index:",idx)
 	var nextnum = 0
@@ -77,6 +77,7 @@ func get_hint_text(col_or_row:bool, idx:int):
 
 
 func setup_grid():
+
 	var pattern = load_from_file("HEARTpattern.txt")
 	
 	## Used for building the 2D boolean 'current_pattern' which stores the
@@ -103,7 +104,6 @@ func setup_grid():
 	## Set the columns to account for the extra column/row for the hints.
 	$GridContainer.columns =  len(pattern.split("\n")[0]) + 1 
 	print("THE HEIGHT OF THIS PATTERN IS: ",pat_height)
-
 	
 	## Generate the actual gridmap
 	
@@ -119,6 +119,7 @@ func setup_grid():
 	for space in range (0,pat_width):
 		lbl = Label.new()
 		lbl.text = "COL"
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		hint_lbl_cols.append(lbl)
 		$GridContainer.add_child(lbl)
 		pass
@@ -127,6 +128,8 @@ func setup_grid():
 	## a  '\n' is scanned in the pattern during generation below 
 	lbl = Label.new()
 	lbl.text = "ROW"
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	#lbl.theme.set_font_size()
 	hint_lbl_rows.append(lbl)
 	$GridContainer.add_child(lbl)
 	
@@ -148,9 +151,10 @@ func setup_grid():
 			var to_add = cell.instantiate()
 			to_add.initialize()
 			$GridContainer.add_child(to_add)
+			board.append(to_add)
 			to_add.connect("cell_carved", _on_cell_carved)
 			
-	board = $GridContainer.get_children()
+	
 	
 	print(pattern.c_unescape().split(""))
 	print("SOLUTION GRID: \n",current_pattern)
@@ -170,12 +174,33 @@ func setup_grid():
 		label.text = get_hint_text(ROW,row)
 
 
+# Checks whether the current board state matches the pattern, therefore
+# solving the puzzle.
+func pattern_is_solved():
+	
+	var width = len(current_pattern[0])
+	var height = len(current_pattern)
+	for y in range (0, height):
+		for x in range (0, width):
+			if (board[(y*width)+x].current_cell_state != int(current_pattern[y][x])):
+				
+				print("pattern not solved yet.  Board state:")
+				print("board[",str(x),",",str(y),"]=",str(board[(y*width)+x].current_cell_state),"pat[",str(x),",",str(y),"]=",int(current_pattern[y][x]))
+				#print(board)
+				#print("current pattern is:")
+				return false
+	
+	# If this point is reached, board state matches pattern, 
+	# therefore problem solved!  Return true
+	return true
+
+
 func _init():
 	pass
 	
 	
 func _ready():
-	#This 
+	
 	if not DEBUG:
 		for n in $GridContainer.get_children():
 			n.queue_free()
@@ -187,6 +212,10 @@ func _ready():
 
 # TODO: implement a check for whether the current state of the grid matches the
 # pattern of the puzzle here
-func _on_cell_carved():
+func _on_cell_carved(cell_node: Node) -> void:
 	print("The signal was successfully passed!")
+	print("The index of the clicked node on the board is: ",board.find(cell_node)) # Returns the index of the first occurrence of what in this array
+	# Check board against solution
+	if pattern_is_solved():
+		print("CONGRATULATIONS YOU'VE SOLVED IT!")
 	pass

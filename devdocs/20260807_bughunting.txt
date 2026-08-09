@@ -1,0 +1,43 @@
+Sometimes, when carving an open (e.g. unmarked, uncarved) space, instead it
+goes into "unmark/uncarve" mode.  Before any other work can be done, this bug
+needs to be tracked down.  The past 30 minutes have been spent developing
+a debugging solution.
+
+To start, the cell_grid needs to print the coordinate of the cell being 
+clicked on.  Presently there's no elegant reporting on where a cell is in the
+grid.  A function will be written.  
+
+a function of GridContainer.columns and the total number of cells will determine
+how to find coordinates in the grid.
+
+EXAMPLE: Grid width = 5 
+total nodes: 25
+That means there's 25 nodes in the array from indexes 0 to 24, effectively 
+creating a 5x5 grid.
+
+Q: What are the coordinates of the node at index 13?
+A: The coordinate is (3,2).  This can be visually represented: 
+	
+ooooo
+ooooo
+oooxo
+ooooo
+ooooo
+
+The 13th position is 2 rows from the top and 2 columns from the left.
+
+FORMULA FOR ROW: int(13/5) = 2
+FORMULA FOR COLUMN: 13%5
+
+Let's try the same example, but with position...
+
+-----------------------
+
+Design oversights are apparent.  The "cellgrid" object doesn't just hold the
+grid cells: it also holds the labels!  It seems to even hold residual objects
+that were freed!  It is not feasible to assume a 1-to-1 relationship between
+cell grid positions, and the actual cell positions on the map.
+
+Therefore a manual tracking of the cells themselves must be acquired; you
+can't simply call "get_children()" on the cell grid to get the nodes; you have
+to store a list of the cells themselves manually at generation.

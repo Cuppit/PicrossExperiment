@@ -1,9 +1,11 @@
 #class_name Cell
 extends TextureButton
 
-signal cell_carved
+signal cell_carved(cell: Node)
 
 const DEBUG_INVIS_BUTTON = false
+
+const DEBUG_SHOW_CURRENT_STATE = false
 
 const MOD_COLOR_OPEN = Color(1,1,1,1)
 const MOD_COLOR_CARVED = Color(0.33,0,0,1)
@@ -30,12 +32,13 @@ func initialize(fill:bool = false):
 ## The current 'state' setting of the cell (by default is "OPEN").
 var current_cell_state:Global.CellState = CellState.OPEN:
 	set(new_cell_state):
+		print(" --- current_cell_state.setting! OLD STATE:",current_cell_state,", SETTING TO STATE: ",new_cell_state)
 		if new_cell_state == CellState.OPEN:
 			modulate = MOD_COLOR_OPEN
 		elif new_cell_state == CellState.CARVED:
 			modulate = MOD_COLOR_CARVED
 			if current_cell_state != CellState.CARVED:
-				cell_carved.emit()
+				cell_carved.emit(self)
 		elif new_cell_state == CellState.MARKED:
 			modulate = MOD_COLOR_MARKED
 		Global.last_clicked_state = new_cell_state
@@ -68,10 +71,14 @@ func _on_gui_input(event):
 	elif Input.is_action_just_pressed("mark"):
 		proc_mark_action()
 
+
 func proc_carve_action():
+	print(" -- Calling proc_carve_action() --")
+	print(" -- Current cell state: ",current_cell_state)
 	if DEBUG_INVIS_BUTTON:
 		visible = false
 	if (current_cell_state == CellState.CARVED):
+		print("-- --proc_carve_action() called on cell that was already carved, setting CellState.OPEN instead:")
 		current_cell_state = CellState.OPEN
 	else:
 			print("Carve action occurred")
@@ -80,10 +87,12 @@ func proc_carve_action():
 
 
 func proc_mark_action():
-		if current_cell_state == CellState.MARKED:
-			current_cell_state = CellState.OPEN
-		else:
-			current_cell_state = CellState.MARKED
+	print(" -- Calling proc_mark_action() --")
+	if current_cell_state == CellState.MARKED:
+		print("-- --proc_mark_action() called on cell that was already carved, setting CellState.OPEN instead:")
+		current_cell_state = CellState.OPEN
+	else:
+		current_cell_state = CellState.MARKED
 '''
 func _on_mouse_entered():
 	if Input.is_action_pressed("carve"):
@@ -103,3 +112,6 @@ func _on_mouse_entered():
 	if Input.is_action_pressed("carve") or Input.is_action_pressed("mark"):
 		current_cell_state = Global.last_clicked_state
 		
+func _process(delta):
+	if DEBUG_SHOW_CURRENT_STATE:
+		$DebugLbl.text = str(current_cell_state)

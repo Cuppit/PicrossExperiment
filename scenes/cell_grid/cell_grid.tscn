@@ -25,6 +25,9 @@ offset_right = 196.0
 offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "This is a tooltip"
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 3
 
 [node name="Cell" parent="GridContainer" unique_id=1006822619 instance=ExtResource("2_shutn")]

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Picross"
+run/main_scene="uid://blg8px2u1o5ac"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,6 +22,10 @@ Global="*uid://c73dr0ti8pth7"
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 

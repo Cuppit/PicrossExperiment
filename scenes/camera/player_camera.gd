@@ -24,7 +24,7 @@ var pan_and_tilt_offset = Vector2()
 
 var target_pos = Vector2()
 
-var target_zoom_lvl:Vector2 = Vector2(1.0, 1.0)
+var target_zoom_lvl:Vector2 = Vector2(0.55, 0.55)
 
 
 

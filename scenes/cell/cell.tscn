@@ -11,6 +11,11 @@ texture_normal = ExtResource("1_gwrgs")
 texture_pressed = ExtResource("1_gwrgs")
 script = ExtResource("2_2yjhv")
 
+[node name="DebugLbl" type="Label" parent="." unique_id=1000373813]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

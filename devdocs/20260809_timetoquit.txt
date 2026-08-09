@@ -1,0 +1,26 @@
+Two major roadblocks have been encountered:
+	-Sometimes a click that should be processed as a "carve" is detected as a
+	"clear" action, and can't figure out why (might have something to do with
+	how clicks are processed outside of the grid)
+	
+	-Something seems to be changing the values inside the solution grid when
+	 checking if it matches the current pattern on the board
+	
+
+There's a lot of inconsistencies with how information is passed between the 
+nodes, a lot of it to do with ignorance of how various parts of Godot work
+going into the project.  The way "state" is tracked was not coded consistently,
+and needs to be re-evaluated.  A solid plan for how the "board" state is 
+tracked/reported needs to be established, and responsibilities for 
+tracking logic need to be more clearly defined. 
+
+LESSONS LEARNED
+
+-Strictly separate logic from presentation.  
+-Account for clicks outside of grid, don't "count" them, and find a way to 
+ process that separately
+
+-More clearly define cell states and how to report them when triggered
+
+-Plan for alternative UI features (e.g. arrow keys and keyboard buttons for
+mroe precise "scrolling" through the grid)
